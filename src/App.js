@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { Overview } from "./components/Overview"
+
+const originalTasks = ['task 1', 'task 2', 'task 3']
+
+
+function onChangeFn(e, setTasks) {
+  setTasks(originalTasks.filter(x => x.includes(e.target.value)))
+}
 
 function App() {
+  const [tasks, setTasks] = useState(originalTasks);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input onChange={(e) => onChangeFn(e, setTasks)} />
+      <Overview tasks={tasks} />
     </div>
   );
 }
