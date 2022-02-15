@@ -3,12 +3,10 @@ import { Overview } from "./components/Overview"
 
 const originalTasks = ['task 1', 'task 2', 'task 3']
 
-
 function onClick(e, setTasks, task, tasks) {
   setTasks(
     [...tasks, task]
   )
-  console.log(tasks)
 }
 
 function onInputChange(e, setTask) {
@@ -23,7 +21,7 @@ function App() {
     <div>
       <input onChange={e => onInputChange(e, setTask)} />
       <button onClick={e => onClick(e, setTasks, task, tasks)}>Submit</button>
-      <Overview tasks={tasks} />
+      <Overview tasks={tasks} setTasks={setTasks} />
     </div>
   );
 }
