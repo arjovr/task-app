@@ -4,16 +4,25 @@ import { Overview } from "./components/Overview"
 const originalTasks = ['task 1', 'task 2', 'task 3']
 
 
-function onChangeFn(e, setTasks) {
-  setTasks(originalTasks.filter(x => x.includes(e.target.value)))
+function onClick(e, setTasks, task, tasks) {
+  setTasks(
+    [...tasks, task]
+  )
+  console.log(tasks)
+}
+
+function onInputChange(e, setTask) {
+  setTask(e.target.value)
 }
 
 function App() {
   const [tasks, setTasks] = useState(originalTasks);
+  const [task, setTask] = useState('')
 
   return (
     <div>
-      <input onChange={(e) => onChangeFn(e, setTasks)} />
+      <input onChange={e => onInputChange(e, setTask)} />
+      <button onClick={e => onClick(e, setTasks, task, tasks)}>Submit</button>
       <Overview tasks={tasks} />
     </div>
   );
